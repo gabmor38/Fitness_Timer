@@ -1,5 +1,9 @@
 import React from 'react';
 //import Buttons from './Button';
+import Clock from "./clock"
+
+
+
 
 export default function Timer (props) {
 
@@ -31,7 +35,13 @@ export default function Timer (props) {
           </div>
          
         </div>
+        
       )}
+      <div>
+        <Clock/>
+      </div>
+      
+   
 
 
     </div>
