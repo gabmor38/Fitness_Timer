@@ -6,14 +6,19 @@ import Timer from "./Timer";
 export default function Initialize () {
   
   const [selectTimer, setSelectTimer] = useState();
+  const [selectRoundTime, setSelectRoundTime] = useState();
 
   const handleClick = (event) => {
     const buttonId = event.target.id;
-    setSelectTimer(buttonId)
-     
+    setSelectTimer(buttonId);   
   }
 
-  console.log("T",selectTimer)
+  const getRoundTime = (value) => {
+    console.log("roundTime", value);
+    setSelectRoundTime(value);
+  }
+
+  console.log("T",selectRoundTime)
   return (
     <>
     <div className="mainContainer">
@@ -26,8 +31,11 @@ export default function Initialize () {
       </div>
       <div>
         {selectTimer !== undefined && (
-        <Timer selectTimer={selectTimer}/>
+        <Timer selectTimer={selectTimer} getRounds= {getRoundTime}/>
         )}
+      </div>
+      <div>
+
       </div>
     </div>  
     

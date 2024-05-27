@@ -13,6 +13,10 @@ export default function Timer (props) {
   const forTime = props.selectTimer === '2';
   
 
+  const inputValue = (e) => {
+    console.log("Ivalue", e.target.value)
+    props.getRounds(e.target.value)
+  }
 
 
   return (
@@ -22,7 +26,7 @@ export default function Timer (props) {
         <div>
           <h2>AMRAP</h2>
           <p>As many rounds as possible in</p>
-          <input type="number" />
+          <input type="number" onChange={inputValue}/>
         </div>
       )}
       {forTime && (
@@ -38,7 +42,7 @@ export default function Timer (props) {
         
       )}
       <div>
-        <Clock/>
+        <Clock />
       </div>
       
    
