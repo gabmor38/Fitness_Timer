@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Buttons from "./Button";
-import Timer from "./Timer";
+import Rounds from "./Rounds";
+import Countdown from "./CountDown";
 
 
 export default function Initialize () {
   
   const [selectTimer, setSelectTimer] = useState();
   const [selectRoundTime, setSelectRoundTime] = useState();
+  const [selectedTime, setSelectedTime] = useState();
 
   const handleClick = (event) => {
     const buttonId = event.target.id;
@@ -18,7 +20,14 @@ export default function Initialize () {
     setSelectRoundTime(value);
   }
 
-  console.log("T",selectRoundTime)
+  const getSelectedTime = (value) => {
+    console.log("selectedTime", value);
+    setSelectedTime(value);
+  }
+
+  console.log("Round",selectRoundTime)
+  console.log("Time",selectedTime)
+  
   return (
     <>
     <div className="mainContainer">
@@ -31,11 +40,16 @@ export default function Initialize () {
       </div>
       <div>
         {selectTimer !== undefined && (
-        <Timer selectTimer={selectTimer} getRounds= {getRoundTime}/>
+        <Rounds selectTimer={selectTimer} getRounds= {getRoundTime} getSelectedTime={getSelectedTime}/>
         )}
       </div>
       <div>
+        {
+          selectRoundTime !== undefined && (
 
+            <Countdown roundTime={selectRoundTime}/>
+          )
+        }
       </div>
     </div>  
     

@@ -1,11 +1,12 @@
 import React from 'react';
 //import Buttons from './Button';
-import Clock from "./clock"
+import SelectTime from './selectTime';
+import Countdown from './CountDown';
 
 
 
 
-export default function Timer (props) {
+export default function Rounds (props) {
 
   console.log("P",props.selectTimer)
 
@@ -18,6 +19,7 @@ export default function Timer (props) {
     props.getRounds(e.target.value)
   }
 
+  
 
   return (
     <>
@@ -42,7 +44,11 @@ export default function Timer (props) {
         
       )}
       <div>
-        <Clock />
+        <SelectTime getSelectedTime ={props.getSelectedTime}/>
+      </div>
+
+      <div>
+        <Countdown/>
       </div>
       
    
