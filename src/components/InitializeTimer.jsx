@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Buttons from "./Button";
 import Rounds from "./Rounds";
 import Countdown from "./CountDown";
@@ -9,6 +9,7 @@ export default function Initialize () {
   const [selectTimer, setSelectTimer] = useState();
   const [selectRoundTime, setSelectRoundTime] = useState();
   const [selectedTime, setSelectedTime] = useState();
+  const [totalTime, setTotalTime ] = useState(0);
 
   const handleClick = (event) => {
     const buttonId = event.target.id;
@@ -16,18 +17,17 @@ export default function Initialize () {
   }
 
   const getRoundTime = (value) => {
-    console.log("roundTime", value);
     setSelectRoundTime(value);
   }
 
   const getSelectedTime = (value) => {
-    console.log("selectedTime", value);
     setSelectedTime(value);
   }
+  useEffect(() => {
+    const getTime = selectRoundTime * selectedTime;
+    setTotalTime(getTime)
+  }, [selectRoundTime, selectedTime, selectTimer])
 
-  console.log("Round",selectRoundTime)
-  console.log("Time",selectedTime)
-  
   return (
     <>
     <div className="mainContainer">
@@ -43,11 +43,19 @@ export default function Initialize () {
         <Rounds selectTimer={selectTimer} getRounds= {getRoundTime} getSelectedTime={getSelectedTime}/>
         )}
       </div>
+      {
+        selectRoundTime && selectedTime !== undefined && (
+        <div>
+        <p>Total Time = { totalTime < 60 ? `${totalTime} seconds` : `${totalTime /60} minutes`}</p>
+      </div>
+        )
+      }
+      
       <div>
         {
-          selectRoundTime !== undefined && (
+          selectRoundTime && selectedTime !== undefined && (
 
-            <Countdown roundTime={selectRoundTime}/>
+            <Countdown totalTime={totalTime}/>
           )
         }
       </div>
