@@ -33,34 +33,39 @@ export default function Initialize () {
   return (
     <>
     <div className="mainContainer">
+      {isPlaying === false && (
+     <div>
       { selectTimer === undefined && (
-      <div>
-        <>
-        <h2> Select timer</h2>
-        <Buttons id={'1'} className={"orange"} text={"amrap".toUpperCase()} onClick={ handleClick}/>
-        <Buttons id={'2'} className={"blue"} text={"for time".toUpperCase()} onClick={ handleClick}/>
-        <Buttons id={'3'} className={"fuscia"} text={"Emom".toUpperCase()} onClick={ handleClick}/>
-        <Buttons id={'4'} className={"green"} text={"Tabata".toUpperCase()} onClick={ handleClick}/>
-        </>
-      </div>
-        )}
-      
-      <div>
-        {selectTimer !== undefined && (
-          <Rounds selectTimer={selectTimer} getRounds= {getRoundTime} getSelectedTime={getSelectedTime}/>
-        )}
-      </div>
-      <div>
-        {
-          selectRoundTime && selectedTime !== undefined && (
-          
-            <p>Total Time = { totalTime < 60 ? `${totalTime} seconds` : `${totalTime /60} minutes`}</p>
-         
-          )
-        }
-      </div>
+        <div>
+          <>
+          <h2> Select timer</h2>
+          <Buttons id={'1'} className={"orange"} text={"amrap".toUpperCase()} onClick={ handleClick}/>
+          <Buttons id={'2'} className={"blue"} text={"for time".toUpperCase()} onClick={ handleClick}/>
+          <Buttons id={'3'} className={"fuscia"} text={"Emom".toUpperCase()} onClick={ handleClick}/>
+          <Buttons id={'4'} className={"green"} text={"Tabata".toUpperCase()} onClick={ handleClick}/>
+          </>
+        </div>
+      )}
+        
+        <div>
+          {selectTimer !== undefined && (
+            <Rounds selectTimer={selectTimer} getRounds= {getRoundTime} getSelectedTime={getSelectedTime}/>
+          )}
+        </div>
+       
+     </div>
+     )}
         
       <div>
+        <div>
+          {
+            selectRoundTime && selectedTime !== undefined && (
+            
+              <p>Total Time = { totalTime < 60 ? `${totalTime} seconds` : `${totalTime /60} minutes`}</p>
+          
+            )
+          }
+        </div>
         {
           selectRoundTime && selectedTime !== undefined && (
 
@@ -68,6 +73,7 @@ export default function Initialize () {
           )
         }
       </div>
+
     </div>  
     
     </>
